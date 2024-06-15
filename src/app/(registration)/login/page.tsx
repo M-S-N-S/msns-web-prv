@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LoginForm } from "~/app/_components/forms/login";
 
 export default function loginPage() {
   return (
@@ -11,9 +12,11 @@ export default function loginPage() {
             width={350}
             height={350}
           />
-          <h1 className="text-5xl text-center font-bold text-yellow-600">MSNS-LMS </h1>
-        
+          <h1 className="text-center text-5xl font-bold text-yellow-600">
+            MSNS-LMS{" "}
+          </h1>
         </div>
+        <LoginForm />
       </div>
     </section>
   );
