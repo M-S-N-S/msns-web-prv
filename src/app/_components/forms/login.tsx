@@ -49,7 +49,7 @@ export const LoginForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>UserPassword</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Enter the password"
