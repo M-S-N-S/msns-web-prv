@@ -34,7 +34,7 @@ export default function Sidebar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
-                href="#"
+                href="/admin/dashboard"
                 className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full hover:bg-pink-500 text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
                 >
                 <Home className="h-5 w-5" />

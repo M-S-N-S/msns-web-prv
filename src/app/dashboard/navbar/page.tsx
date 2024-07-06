@@ -2,19 +2,18 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "~/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
-
 export default function Navbar() {
   return (
 <header className="bg-green-900 text-white px-4 py-2 flex justify-between items-center fixed top-0 w-full z-50">
   <a className="text-xl font-bold">My App</a>
   <ul className="flex space-x-4">
     <li>
-      <a href="/" className="hover:text-pink-600">
+      <a href="/home" className="hover:text-pink-600">
         Home
       </a>
     </li>
     <li>
-      <a href="/about" className="hover:text-pink-600">
+      <a href="../about" className="hover:text-pink-600">
         About
       </a>
     </li>
