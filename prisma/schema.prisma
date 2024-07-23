@@ -7,18 +7,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  Int?
-  author    User?   @relation(fields: [authorId], references: [id])
+model User {
+  userId   String @id @default(uuid())
+  email    String @unique
+  password String
+  role     Role
+
+  @@index([email])
+  @@map("users")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model Class {
+  classId   String @id @default(uuid())
+  className String @default("none")
+  classSlug String @default("none")
+
+  @@index([className])
+  @@map("classes")
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  CLERK
 }
