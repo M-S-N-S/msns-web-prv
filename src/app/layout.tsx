@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>      
-      <body className="grid min-h-screen grid-col-1">
+      <body className="flex flex-col min-h-screen">
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>

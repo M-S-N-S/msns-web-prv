@@ -1,7 +1,5 @@
-import "~/styles/globals.css";
 
-import About from "./page";
-import Navbar from "../dashboard/navbar/page";
+
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Sidebar } from "lucide-react";
 export const metadata = {
@@ -10,17 +8,13 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/logo/logo-white.png" }],
 };
 
-export default function AboutLayout({
-}: {
-  children: React.ReactNode;
-}) {
+export default function AboutLayout({children}: { children: React.ReactNode }) {
   return (
     <body>
-            <Navbar/>
-            <Sidebar />
-      <ScrollArea className="rounded-lg bg-emerald-200 shadow-md p-4 mt-4 ml-10">
-      <About />
-    </ScrollArea>
+      <Sidebar />
+      <ScrollArea className="ml-10 mt-4 rounded-lg bg-emerald-200 p-4 shadow-md">
+        {children}
+      </ScrollArea>
     </body>
   );
 }

@@ -1,12 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
-import { LoginForm } from "~/app/_components/forms/login";
+import { LoginForm } from "~/app/_components/forms/LoginForm";
+import { api } from "~/trpc/server";
 
+export default async function loginPage() {
 
-export default function loginPage() {
   return (
     <section className="col-span-12 grid  place-content-center bg-[url('/jpg/Schoolview.jpg')] bg-cover">
       <div className="grid outline outline-green-700 h-[45rem] w-[27rem] place-items-center rounded-lg bg-green-800/50 shadow-lg">
