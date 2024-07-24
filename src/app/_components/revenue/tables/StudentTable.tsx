@@ -34,7 +34,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { ClassCreationDialog } from "~/app/_components/revenue/forms/class/ClassCreation";
 
 const columns: ColumnDef<ClassProps>[] = [
   {
@@ -99,7 +98,7 @@ const columns: ColumnDef<ClassProps>[] = [
   },
 ];
 
-export const ClassTable = () => {
+export const StudentTable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [data, setData] = useState<ClassProps[]>([]);
@@ -142,7 +141,9 @@ export const ClassTable = () => {
           <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
             Refresh
           </Button>
-          <ClassCreationDialog />
+          <Button  type="button" onClick={()=>classesData.refetch()} asChild>
+            <Link href={'/revenue/students/create'}>Create</Link>
+          </Button>
         </div>
       </div>
       <div className="rounded-md border">

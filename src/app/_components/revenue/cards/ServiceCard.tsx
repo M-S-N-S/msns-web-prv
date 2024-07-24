@@ -14,7 +14,7 @@ export const ServiceCards = () => {
       description:
         "Easily enroll new students and manage their financial records.",
       icon: <PersonIcon className="mb-4 h-8 w-8 text-blue-500" />,
-      href: "/revenue/add-student",
+      href: "/revenue/students",
     },
     {
       title: "Classes",

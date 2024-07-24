@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-
 "use client";
 
-import { CalendarIcon, ReloadIcon } from "@radix-ui/react-icons";
+import {  ReloadIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
@@ -17,7 +15,6 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { cn } from "~/lib/utils";
 
 import {
   Dialog,
