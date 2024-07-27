@@ -34,6 +34,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { CSVUploadDialog } from "../forms/student/FileInput";
 
 const columns: ColumnDef<ClassProps>[] = [
   {
@@ -141,6 +142,7 @@ export const StudentTable = () => {
           <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
             Refresh
           </Button>
+          <CSVUploadDialog/>
           <Button  type="button" onClick={()=>classesData.refetch()} asChild>
             <Link href={'/revenue/students/create'}>Create</Link>
           </Button>
