@@ -5,7 +5,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent }
 export default function Alumni (){
     return(
       <main className="min-h-screen sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 bg-yellow-100/50">
-            <h1 className="text-3xl font-bold text-green-800 p-4">MSNS-Alumni</h1>
+        <div className="min-h-screen sm:px-6 bg-yellow-100">
+        <h1 className="text-3xl font-bold text-green-800 p-4">Dashboard</h1>
+    </div>
              <Card
                 className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
               >

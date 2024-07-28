@@ -4,8 +4,10 @@ export default function ClassesPage(){
 
     return (
         <section className="grid gap-2">
-            <h1 className="text-3xl text-gray-900">Add Student</h1>
-            <StudentCreation/>
+        <div className="min-h-screen sm:px-6 bg-yellow-100/50">
+        <h1 className="text-5xl font-serif font-bold text-green-800 text-center p-6">Student Registration Portal</h1>
+        <StudentCreation/>
+    </div>
         </section>
     )
 }

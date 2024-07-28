@@ -127,7 +127,7 @@ export const StudentTable = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between gap-2 py-4">
+      <div className="flex items-center justify-between m-2">
         <Input
           placeholder="Search name"
           value={
@@ -138,9 +138,16 @@ export const StudentTable = () => {
           }
           className="max-w-sm"
         />
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          
           <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
             Refresh
+          </Button>
+          <Button 
+            variant="destructive" 
+            type="button" 
+            onClick={()=>classesData.refetch()}>
+            Delete
           </Button>
           <CSVUploadDialog/>
           <Button  type="button" onClick={()=>classesData.refetch()} asChild>
@@ -148,7 +155,7 @@ export const StudentTable = () => {
           </Button>
         </div>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border m-2">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -198,7 +205,7 @@ export const StudentTable = () => {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 m-6">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.

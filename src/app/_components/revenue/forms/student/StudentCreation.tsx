@@ -42,17 +42,35 @@ const formSchema = z.object({
     .string()
     .min(2, "Father's name must be at least 2 characters")
     .max(100, "Father's name must not exceed 100 characters"),
+  studentBForm: z
+    .string()
+    .regex(/^\d{4}-\d{7}-\d{1}$/, "Invalid Student B-Form format (0000-0000000-0)"),
+  fatherCNIC: z
+    .string()
+    .regex(/^\d{4}-\d{7}-\d{1}$/, "Invalid Father CNIC format (0000-0000000-0)"),
+  gender: z.enum(['Male', 'Female', 'Other']),
   caste: z.optional(z.string()),
   occupation: z
     .string()
     .min(2, "Occupation must be at least 2 characters")
     .max(100, "Occupation must not exceed 100 characters"),
+  religion: z.string().min(2, "Religion must be at least 2 characters"),
   residence: z
     .string()
     .min(5, "Residence must be at least 5 characters")
     .max(200, "Residence must not exceed 200 characters"),
+    residence2: z.optional(
+      z
+      .string()
+    .min(5, "Residence must be at least 5 characters")
+    .max(200, "Residence must not exceed 200 characters"),
+    ),
   admittedClass: z.string({ required_error: "Field is required" }),
-  contactNumbers: z.optional(
+  contact1: z
+      .string()
+      .regex(/^[0-9,\s]+$/, "Invalid phone number format")
+      .min(10, "Contact number must be at least 10 digits"),
+  contact2: z.optional(
     z
       .string()
       .regex(/^[0-9,\s]+$/, "Invalid phone number format")
@@ -65,20 +83,31 @@ export const StudentCreation = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const classes = [
-    "Play Group",
-    "Nursery",
-    "Prep",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
+  const genderClasses = [
+    "M",
+    "F",
+  ];
+
+  const religion = [
+    "Muslim",
+    "Christian",
+    "Others",
+  ];
+
+  const classGrades = [
+    "PLAYGROUP",
+    "NURSERY",
+    "PREPARATORY",
+    "ONE",
+    "TWO",
+    "THREE",
+    "FOUR",
+    "FIVE",
+    "SIX",
+    "SEVEN",
+    "NINE - J",
+    "NINE - S",
+    "TEN",
   ];
 
   const formSubmitted = (data: z.infer<typeof formSchema>) => {
@@ -88,8 +117,8 @@ export const StudentCreation = () => {
   return (
     <Card className="mx-auto w-full max-w-4xl">
       <CardHeader>
-        <CardTitle className="text-center text-2xl font-bold">
-          Student Registration
+        <CardTitle className="text-4xl font-serif font-medium text-green-800">
+          Student Registration Form
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -98,16 +127,16 @@ export const StudentCreation = () => {
             onSubmit={form.handleSubmit(formSubmitted)}
             className="space-y-6"
           >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 font-sans font-normal">
               <FormField
                 control={form.control}
                 name="studentName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Student Name</FormLabel>
+                    <FormLabel>Student Name:*</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter student's name"
+                        placeholder="Student's name"
                         {...field}
                         value={field.value ?? ""}
                       />
@@ -121,10 +150,10 @@ export const StudentCreation = () => {
                 name="fatherName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Father Name</FormLabel>
+                    <FormLabel>Father Name:*</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter father's name"
+                        placeholder="Father's name"
                         {...field}
                         value={field.value ?? ""}
                       />
@@ -133,12 +162,46 @@ export const StudentCreation = () => {
                   </FormItem>
                 )}
               />
+                      <FormField
+          control={form.control}
+          name="studentBForm"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Student B-Form #*</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="0000-0000000-0"
+                  {...field}
+                  value={field.value ?? ""}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="fatherCNIC"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Father CNIC #*</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="0000-0000000-0"
+                  {...field}
+                  value={field.value ?? ""}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
               <FormField
                 control={form.control}
                 name="dob"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Date of Birth</FormLabel>
+                    <FormLabel>Date of Birth:*</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -179,7 +242,7 @@ export const StudentCreation = () => {
                 name="doa"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Date of Admission</FormLabel>
+                    <FormLabel>Date of Admission:</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -215,10 +278,64 @@ export const StudentCreation = () => {
               />
               <FormField
                 control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gender:</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select Gender" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {genderClasses.map((value, index) => (
+                          <SelectItem key={index} value={value}>
+                            {value}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+                            <FormField
+                control={form.control}
+                name="religion"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Select Religion:</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Religion" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {religion.map((value, index) => (
+                          <SelectItem key={index} value={value}>
+                            {value}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="caste"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tribe or Caste (Optional)</FormLabel>
+                    <FormLabel>Tribe/ Caste:</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter tribe or caste"
@@ -235,7 +352,7 @@ export const StudentCreation = () => {
                 name="occupation"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Guardian Occupation</FormLabel>
+                    <FormLabel>Guardian Occupation:</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter guardian's occupation"
@@ -252,10 +369,27 @@ export const StudentCreation = () => {
                 name="residence"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Residential Address</FormLabel>
+                    <FormLabel>Residential Address:*</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter residential address"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+                            <FormField
+                control={form.control}
+                name="residence2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Permanent Address:</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Permanent Address (optional)"
                         {...field}
                         value={field.value ?? ""}
                       />
@@ -269,7 +403,7 @@ export const StudentCreation = () => {
                 name="admittedClass"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Admitted Class</FormLabel>
+                    <FormLabel>Admitted Class:*</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -280,7 +414,7 @@ export const StudentCreation = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {classes.map((value, index) => (
+                        {classGrades.map((value, index) => (
                           <SelectItem key={index} value={value}>
                             {value}
                           </SelectItem>
@@ -293,10 +427,28 @@ export const StudentCreation = () => {
               />
               <FormField
                 control={form.control}
-                name="contactNumbers"
+                name="contact1"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Contact Numbers (Optional)</FormLabel>
+                    <FormLabel>Contact #:</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter Mobile #"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="contact2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Additional Contact #:(Optional)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter contact numbers"

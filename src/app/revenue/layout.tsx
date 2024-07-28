@@ -1,3 +1,4 @@
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Footer } from "../_components/footer/footer";
 import { Header } from "../_components/header/header";
 import { HorizontalMenu } from "../_components/menubar/menubar";
@@ -15,10 +16,14 @@ export default function RevenueDashboardLayout({
 }) {
   return (
     <>
-      <Header />
+    <body>
+    <Header />
+      <ScrollArea className="rounded-lg shadow-md">
       <HorizontalMenu />
-      <main className="flex flex-col gap-4 p-4">{children}</main>
-      <Footer />
+      {children}
+    </ScrollArea>
+    <Footer />
+    </body>
     </>
   );
 }

@@ -13,8 +13,15 @@ export const ServiceCards = () => {
       title: "Students",
       description:
         "Easily enroll new students and manage their financial records.",
-      icon: <PersonIcon className="mb-4 h-8 w-8 text-blue-500" />,
+      icon: <PersonIcon className="mb-4 h-8 w-8 text-green-500" />,
       href: "/revenue/students",
+    },
+    {
+      title: "Alumni",
+      description:
+        "Easily enroll new students and manage their financial records.",
+      icon: <PersonIcon className="mb-4 h-8 w-8 text-blue-500" />,
+      href: "/admin/alumni",
     },
     {
       title: "Classes",
@@ -54,7 +61,7 @@ export const ServiceCards = () => {
         <Link
           href={service.href}
           key={index}
-          className="transform rounded-lg bg-white p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
+          className="transform rounded-lg bg-yellow-100 p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
         >
           <div className="flex flex-col items-center text-center">
             {service.icon}
