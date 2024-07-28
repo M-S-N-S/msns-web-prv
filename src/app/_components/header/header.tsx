@@ -11,7 +11,7 @@ export const Header = () => {
       <nav className="nav">
         <ul className="flex space-x-6">
           <li className="nav-item">
-            <a href="#" className="nav-link text-green-800 font-bold hover:text-pink-600 transition-colors duration-300">Home</a>
+            <a href="/home" className="nav-link text-green-800 font-bold hover:text-pink-600 transition-colors duration-300">Home</a>
           </li>
           <li className="nav-item">
             <a href="#" className="nav-link text-green-800 font-bold hover:text-pink-600 transition-colors duration-300">About</a>

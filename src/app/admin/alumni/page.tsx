@@ -1,55 +1,19 @@
-import { Progress } from "@radix-ui/react-progress";
-import { Button } from "~/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "~/components/ui/card";
+import { AlumniCards } from "~/app/_components/revenue/cards/AlumniCard";
 
-export default function Alumni (){
-    return(
-      <main className="min-h-screen sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 bg-yellow-100/50">
-        <div className="min-h-screen sm:px-6 bg-yellow-100">
-        <h1 className="text-3xl font-bold text-green-800 p-4">Dashboard</h1>
-    </div>
-             <Card
-                className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
-              >
-                <CardHeader className="pb-3">
-                  <CardTitle>Alumni</CardTitle>
-                  <CardDescription className="max-w-lg text-balance leading-relaxed">
-                    Introducing Our Dynamic Orders Dashboard for Seamless
-                    Management and Insightful Analysis.
-                  </CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button>Faculty Management</Button>
-                </CardFooter>
-              </Card>
-              <Card x-chunk="dashboard-05-chunk-1">
-                <CardHeader className="pb-2">
-                  <CardDescription>Total Students</CardDescription>
-                  <CardTitle className="text-4xl">1,329</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +25% from this month
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Progress value={25} aria-label="25% increase" />
-                </CardFooter>
-              </Card>
-              <Card x-chunk="dashboard-05-chunk-2">
-                <CardHeader className="pb-2">
-                  <CardDescription>This Month</CardDescription>
-                  <CardTitle className="text-4xl">$15,329</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +10% from last month
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Progress value={12} aria-label="12% increase" />
-                </CardFooter>
-              </Card>
-        </main>
+export default function Aumni() {
+    return (
+        <main className="min-h-screen sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 bg-yellow-100/50">
+            <div className="container mx-auto p-4">
+            <div className="relative overflow-hidden">
+              <h1 className="text-center text-5xl font-serif font-bold tracking-tight">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-yellow-500 hover:from-orange-400 hover:to-green-500 transition-all duration-300">
+                  MSNS ALUMNI
+                </span>
+              </h1>
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-green-600 to-yellow-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </div>
+          </div>
+          <AlumniCards />
+    </main>
     )
 }

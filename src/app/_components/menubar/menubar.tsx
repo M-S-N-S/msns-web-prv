@@ -7,11 +7,6 @@ export const HorizontalMenu = () => {
     <Menubar>
       <MenubarMenu>
         <MenubarTrigger>
-        <Link href="/admin/profile">Profile</Link>
-        </MenubarTrigger>
-      </MenubarMenu>
-      <MenubarMenu>
-        <MenubarTrigger>
         <Link href="/admin/dashboard">Dashboard</Link>
         </MenubarTrigger>
       </MenubarMenu>
@@ -22,7 +17,7 @@ export const HorizontalMenu = () => {
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-        <Link href="/revenue/students">Academics</Link>
+        <Link href="/admin/academics">Academics</Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
