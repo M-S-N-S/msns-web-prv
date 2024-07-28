@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { LoginForm } from "~/app/_components/forms/LoginForm";
-import { api } from "~/trpc/server";
 
 export default async function loginPage() {
 
@@ -33,7 +32,7 @@ export default async function loginPage() {
           </Link>
           {/* Button 2 */}
           <Link
-           href="/dashboard"
+           href="/admin/dashboard"
             type="submit" // Important: Set type to "button" for non-form actions
             className="rounded hover:outline outline-2 outline-pink-700 bg-green-700 px-6 py-3 font-bold transition hover:bg-white/50"
           >
