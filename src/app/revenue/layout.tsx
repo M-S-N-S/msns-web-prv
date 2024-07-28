@@ -1,4 +1,6 @@
-import { RevenueHeader } from "~/app/_components/revenue/RevenueHeader";
+import { Footer } from "../_components/footer/footer";
+import { Header } from "../_components/header/header";
+import { HorizontalMenu } from "../_components/menubar/menubar";
 
 export const metadata = {
   title: "MSNS-WEB | Clerk ",
@@ -13,8 +15,10 @@ export default function RevenueDashboardLayout({
 }) {
   return (
     <>
-      <RevenueHeader />
+      <Header />
+      <HorizontalMenu />
       <main className="flex flex-col gap-4 p-4">{children}</main>
+      <Footer />
     </>
   );
 }
