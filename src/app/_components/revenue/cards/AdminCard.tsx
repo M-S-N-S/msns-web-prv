@@ -38,7 +38,7 @@ import {
         title: "Settings",
         description: "Customize payment plans and automate recurring payments.",
         icon: <GearIcon className="mb-4 h-8 w-8 text-red-500" />,
-        href: "admin/settings",
+        href: "/admin/settings",
       },
     ];
   

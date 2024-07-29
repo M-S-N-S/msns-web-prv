@@ -8,7 +8,7 @@
         description:
           "Easily enroll new students and manage their financial records.",
         icon: <UserPlus2Icon className="mb-4 h-8 w-8 text-green-500" />,
-        href: "/revenue/students",
+        href: "/registration/student",
       },
       {
         title: "Academics",
