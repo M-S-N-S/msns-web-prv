@@ -26,6 +26,39 @@ model Class {
   @@map("classes")
 }
 
+model Student {
+  studentId         String   @id @default(uuid())
+  studentName       String   @default("none")
+  fatherName        String   @default("none")
+  bform             String   @default("0000-0000000-0")
+  cnic              String   @default("0000-0000000-0")
+  dob               String   @default("none")
+  doa               String   @default("none")
+  gender            Gender   @default(CUSTOM)
+  religion          Religion @default(MUSLIM)
+  tribe             String   @default("none")
+  occupation        String   @default("none")
+  address           String   @default("none")
+  permanentAddress  String   @default("none")
+  contact           String   @default("none")
+  additionalContact String   @default("none")
+
+  @@index([studentName])
+  @@map("students")
+}
+
+enum Religion {
+  MUSLIM
+  CHRISTIAN
+  OTHERS
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  CUSTOM
+}
+
 enum Role {
   ADMIN
   TEACHER

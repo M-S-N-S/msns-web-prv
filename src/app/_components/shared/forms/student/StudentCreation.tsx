@@ -30,6 +30,8 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { cn } from "~/lib/utils";
+import { api } from "~/trpc/react";
+import dayjs from 'dayjs'
 
 const formSchema = z.object({
   doa: z.date({ required_error: "Field is required." }),
@@ -44,11 +46,17 @@ const formSchema = z.object({
     .max(100, "Father's name must not exceed 100 characters"),
   studentBForm: z
     .string()
-    .regex(/^\d{4}-\d{7}-\d{1}$/, "Invalid Student B-Form format (0000-0000000-0)"),
+    .regex(
+      /^\d{4}-\d{7}-\d{1}$/,
+      "Invalid Student B-Form format (0000-0000000-0)",
+    ),
   fatherCNIC: z
     .string()
-    .regex(/^\d{4}-\d{7}-\d{1}$/, "Invalid Father CNIC format (0000-0000000-0)"),
-  gender: z.enum(['Male', 'Female', 'Other']),
+    .regex(
+      /^\d{4}-\d{7}-\d{1}$/,
+      "Invalid Father CNIC format (0000-0000000-0)",
+    ),
+  gender: z.string({required_error:'Field is required.'}),
   caste: z.optional(z.string()),
   occupation: z
     .string()
@@ -59,17 +67,16 @@ const formSchema = z.object({
     .string()
     .min(5, "Residence must be at least 5 characters")
     .max(200, "Residence must not exceed 200 characters"),
-    residence2: z.optional(
-      z
+  residence2: z.optional(
+    z
       .string()
-    .min(5, "Residence must be at least 5 characters")
-    .max(200, "Residence must not exceed 200 characters"),
-    ),
-  admittedClass: z.string({ required_error: "Field is required" }),
+      .min(5, "Residence must be at least 5 characters")
+      .max(200, "Residence must not exceed 200 characters"),
+  ),
   contact1: z
-      .string()
-      .regex(/^[0-9,\s]+$/, "Invalid phone number format")
-      .min(10, "Contact number must be at least 10 digits"),
+    .string()
+    .regex(/^[0-9,\s]+$/, "Invalid phone number format")
+    .min(10, "Contact number must be at least 10 digits"),
   contact2: z.optional(
     z
       .string()
@@ -84,40 +91,56 @@ export const StudentCreation = () => {
   });
 
   const genderClasses = [
-    "Male",
-    "Female",
+    {
+      value: "M",
+      label: "Male",
+    },
+    {
+      value: "F",
+      label: "Female",
+    },
   ];
 
   const religion = [
-    "Muslim",
-    "Christian",
-    "Others",
+    {
+      value: "M",
+      label: "Muslim",
+    },
+    {
+      value: "C",
+      label: "Christian",
+    },
+    {
+      value: "O",
+      label: "Others",
+    },
   ];
 
-  const classGrades = [
-    "PLAYGROUP",
-    "NURSERY",
-    "PREPARATORY",
-    "ONE",
-    "TWO",
-    "THREE",
-    "FOUR",
-    "FIVE",
-    "SIX",
-    "SEVEN",
-    "NINE - J",
-    "NINE - S",
-    "TEN",
-  ];
+  const createStudent = api.student.createStudent.useMutation();
 
   const formSubmitted = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    createStudent.mutate({
+      studentName: data.studentName,
+      fatherName: data.fatherName,
+      bform: data.studentBForm,
+      cnic: data.fatherCNIC,
+      dob: dayjs(data.dob).format('YYYY-MM-DD'),
+      doa: dayjs(data.doa).format('YYYY-MM-DD'),
+      gender: data.gender,
+      religion: data.religion,
+      tribe: data.caste ?? "none",
+      occupation: data.occupation,
+      address: data.residence,
+      permanentAddress: data.residence2?? "none",
+      contact: data.contact1,
+      additionalContact: data.contact2 ?? "none",
+    });
   };
 
   return (
     <Card className="mx-auto w-full max-w-4xl">
       <CardHeader>
-        <CardTitle className="text-4xl font-serif font-medium text-green-800">
+        <CardTitle className="font-serif text-4xl font-medium text-green-800">
           Student Registration Form
         </CardTitle>
       </CardHeader>
@@ -127,7 +150,7 @@ export const StudentCreation = () => {
             onSubmit={form.handleSubmit(formSubmitted)}
             className="space-y-6"
           >
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 font-sans font-normal">
+            <div className="grid grid-cols-1 gap-6 font-sans font-normal md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="studentName"
@@ -162,40 +185,40 @@ export const StudentCreation = () => {
                   </FormItem>
                 )}
               />
-                      <FormField
-          control={form.control}
-          name="studentBForm"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Student B-Form #*</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="0000-0000000-0"
-                  {...field}
-                  value={field.value ?? ""}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="fatherCNIC"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Father CNIC #*</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="0000-0000000-0"
-                  {...field}
-                  value={field.value ?? ""}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+              <FormField
+                control={form.control}
+                name="studentBForm"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Student B-Form #*</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="0000-0000000-0"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="fatherCNIC"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Father CNIC #*</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="0000-0000000-0"
+                        {...field}
+                        value={field.value ?? ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="dob"
@@ -293,8 +316,8 @@ export const StudentCreation = () => {
                       </FormControl>
                       <SelectContent>
                         {genderClasses.map((value, index) => (
-                          <SelectItem key={index} value={value}>
-                            {value}
+                          <SelectItem key={index} value={value.value}>
+                            {value.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -303,7 +326,7 @@ export const StudentCreation = () => {
                   </FormItem>
                 )}
               />
-                            <FormField
+              <FormField
                 control={form.control}
                 name="religion"
                 render={({ field }) => (
@@ -320,8 +343,8 @@ export const StudentCreation = () => {
                       </FormControl>
                       <SelectContent>
                         {religion.map((value, index) => (
-                          <SelectItem key={index} value={value}>
-                            {value}
+                          <SelectItem key={index} value={value.value}>
+                            {value.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -381,7 +404,7 @@ export const StudentCreation = () => {
                   </FormItem>
                 )}
               />
-                            <FormField
+              <FormField
                 control={form.control}
                 name="residence2"
                 render={({ field }) => (
@@ -394,33 +417,6 @@ export const StudentCreation = () => {
                         value={field.value ?? ""}
                       />
                     </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="admittedClass"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Admitted Class:*</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a class" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {classGrades.map((value, index) => (
-                          <SelectItem key={index} value={value}>
-                            {value}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -456,15 +452,14 @@ export const StudentCreation = () => {
                         value={field.value ?? ""}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
             <div className="flex justify-center">
-              <Button type="submit" className="w-full sm:w-auto">
-                Register Student
+              <Button type="submit" className="w-full sm:w-auto" disabled={createStudent.isPending}>
+                {createStudent.isPending ? 'Please wait':'Register Student'}
               </Button>
             </div>
           </form>
