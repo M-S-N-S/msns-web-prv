@@ -51,7 +51,7 @@ export const ClassCreationDialog = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button>
-          Create
+          Add class
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full sm:max-w-md">
