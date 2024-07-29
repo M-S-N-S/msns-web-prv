@@ -35,6 +35,7 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { ClassCreationDialog } from "~/app/_components/shared/forms/class/ClassCreation";
+import { ClassDeletionDialog } from "~/app/_components/shared/forms/class/ClassDeletion";
 
 const columns: ColumnDef<ClassProps>[] = [
   {
@@ -139,10 +140,11 @@ export const ClassTable = () => {
           className="max-w-sm"
         />
         <div className="flex items-center gap-2">
-          <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
+          <ClassCreationDialog />
+          <Button variant={'outline'} type="button" onClick={() => classesData.refetch()}>
             Refresh
           </Button>
-          <ClassCreationDialog />
+          <ClassDeletionDialog  classIds={table.getSelectedRowModel().rows.map(row=>row.original.classId)}/>
         </div>
       </div>
       <div className="rounded-md border">
@@ -156,9 +158,9 @@ export const ClassTable = () => {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </TableHead>
                   );
                 })}

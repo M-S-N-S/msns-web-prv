@@ -84,8 +84,8 @@ export const StudentCreation = () => {
   });
 
   const genderClasses = [
-    "M",
-    "F",
+    "Male",
+    "Female",
   ];
 
   const religion = [

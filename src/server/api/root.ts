@@ -5,8 +5,9 @@ import { ClassRouter } from "./routers/class";
 
 export const appRouter = createTRPCRouter({
   register: RegistrationRouter,
-  class: ClassRouter
+  class: ClassRouter,
 });
+
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
