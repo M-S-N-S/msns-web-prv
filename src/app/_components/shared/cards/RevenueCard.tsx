@@ -25,7 +25,7 @@ import {
         title: "Fee Collection",
         description: "Streamline tuition and fee collection processes.",
         icon: <DollarSignIcon className="mb-4 h-12 w-12 text-green-500" />,
-        href: "",
+        href: "/revenue/fee",
       },
       {
         title: "Financial Reporting",
@@ -37,7 +37,7 @@ import {
         title: "Invoice Management",
         description: "Create, send, and track invoices for various school fees.",
         icon: <FileTextIcon className="mb-4 h-12 w-12 text-yellow-500" />,
-        href: "",
+        href: "/revenue/invoice",
       },
       {
         title: "Payment Settings",
