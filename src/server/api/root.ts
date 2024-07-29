@@ -1,11 +1,13 @@
 import { RegistrationRouter } from "~/server/api/routers/registration";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { ClassRouter } from "./routers/class";
+import { StudentRouter } from "./routers/student";
 
 
 export const appRouter = createTRPCRouter({
   register: RegistrationRouter,
   class: ClassRouter,
+  student:StudentRouter
 });
 
 
