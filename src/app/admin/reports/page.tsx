@@ -1,5 +1,7 @@
 export default function AdminReports (){
     return(
-        <h1>admin dashboard</h1>
-    )
+        <div className="min-h-screen sm:px-6 bg-yellow-100/50">
+        <h1 className="text-3xl font-bold text-green-800 p-4">Reports</h1>
+    </div>
+)
 }

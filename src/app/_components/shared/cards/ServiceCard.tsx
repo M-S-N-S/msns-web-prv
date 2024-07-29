@@ -4,7 +4,7 @@ import {
   FileTextIcon,
   GearIcon,
 } from "@radix-ui/react-icons";
-import { DollarSignIcon, LayersIcon } from "lucide-react";
+import { DollarSignIcon, LayersIcon, UsersIcon } from "lucide-react";
 import Link from "next/link";
 
 export const ServiceCards = () => {
@@ -13,37 +13,44 @@ export const ServiceCards = () => {
       title: "Students",
       description:
         "Easily enroll new students and manage their financial records.",
-      icon: <PersonIcon className="mb-4 h-8 w-8 text-blue-500" />,
-      href: "/revenue/students",
+      icon: <PersonIcon className="mb-4 h-12 w-12 text-green-500" />,
+      href: "",
     },
     {
-      title: "Classes",
+      title: "Alumni",
+      description:
+        "Easily enroll new students and manage their financial records.",
+      icon: <UsersIcon className="mb-4 h-12 w-12 text-blue-500" />,
+      href: "/admin/alumni",
+    },
+    {
+      title: "",
       description: "Create and manage new classes or courses for the school.",
-      icon: <LayersIcon className="mb-4 h-8 w-8 text-indigo-500" />,
-      href: "/revenue/classes",
+      icon: <LayersIcon className="mb-4 h-12 w-12 text-indigo-500" />,
+      href: "",
     },
     {
       title: "Fee Collection",
       description: "Streamline tuition and fee collection processes.",
-      icon: <DollarSignIcon className="mb-4 h-8 w-8 text-green-500" />,
+      icon: <DollarSignIcon className="mb-4 h-12 w-12 text-green-500" />,
       href: "",
     },
     {
       title: "Financial Reporting",
       description: "Generate comprehensive financial reports and analytics.",
-      icon: <BarChartIcon className="mb-4 h-8 w-8 text-purple-500" />,
+      icon: <BarChartIcon className="mb-4 h-12 w-12 text-purple-500" />,
       href: "",
     },
     {
       title: "Invoice Management",
       description: "Create, send, and track invoices for various school fees.",
-      icon: <FileTextIcon className="mb-4 h-8 w-8 text-yellow-500" />,
+      icon: <FileTextIcon className="mb-4 h-12 w-12 text-yellow-500" />,
       href: "",
     },
     {
       title: "Payment Settings",
       description: "Customize payment plans and automate recurring payments.",
-      icon: <GearIcon className="mb-4 h-8 w-8 text-red-500" />,
+      icon: <GearIcon className="mb-4 h-12 w-12 text-red-500" />,
       href: "",
     },
   ];
@@ -54,7 +61,7 @@ export const ServiceCards = () => {
         <Link
           href={service.href}
           key={index}
-          className="transform rounded-lg bg-white p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
+          className="transform rounded-lg bg-yellow-100 p-6 shadow-md transition duration-300 ease-in-out hover:scale-105 hover:cursor-pointer"
         >
           <div className="flex flex-col items-center text-center">
             {service.icon}

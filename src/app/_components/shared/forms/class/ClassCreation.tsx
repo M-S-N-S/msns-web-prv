@@ -71,7 +71,7 @@ export const ClassCreationDialog = () => {
                   <FormLabel>Class name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="One"
+                      placeholder="Write Class/Grade"
                       {...field}
                       value={field.value ?? ""}
                     />
@@ -88,7 +88,7 @@ export const ClassCreationDialog = () => {
                   <FormLabel>Class slug</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Rose"
+                      placeholder="ROSE/ TULIP"
                       {...field}
                       value={field.value ?? ""}
                     />

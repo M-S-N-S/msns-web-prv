@@ -34,7 +34,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { ClassCreationDialog } from "~/app/_components/revenue/forms/class/ClassCreation";
+import { CSVUploadDialog } from "../forms/student/FileInput";
 
 const columns: ColumnDef<ClassProps>[] = [
   {
@@ -99,7 +99,7 @@ const columns: ColumnDef<ClassProps>[] = [
   },
 ];
 
-export const ClassTable = () => {
+export const StudentTable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [data, setData] = useState<ClassProps[]>([]);
@@ -127,7 +127,7 @@ export const ClassTable = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between gap-2 py-4">
+      <div className="flex items-center justify-between m-2">
         <Input
           placeholder="Search name"
           value={
@@ -138,14 +138,24 @@ export const ClassTable = () => {
           }
           className="max-w-sm"
         />
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          
           <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
             Refresh
           </Button>
-          <ClassCreationDialog />
+          <Button 
+            variant="destructive" 
+            type="button" 
+            onClick={()=>classesData.refetch()}>
+            Delete
+          </Button>
+          <CSVUploadDialog/>
+          <Button  type="button" onClick={()=>classesData.refetch()} asChild>
+            <Link href={'/registration/student/create'}>Create</Link>
+          </Button>
         </div>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border m-2">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -195,7 +205,7 @@ export const ClassTable = () => {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 m-6">
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.

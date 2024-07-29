@@ -34,7 +34,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { CSVUploadDialog } from "../forms/student/FileInput";
+import { ClassCreationDialog } from "~/app/_components/shared/forms/class/ClassCreation";
 
 const columns: ColumnDef<ClassProps>[] = [
   {
@@ -99,7 +99,7 @@ const columns: ColumnDef<ClassProps>[] = [
   },
 ];
 
-export const StudentTable = () => {
+export const ClassTable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [data, setData] = useState<ClassProps[]>([]);
@@ -142,10 +142,7 @@ export const StudentTable = () => {
           <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
             Refresh
           </Button>
-          <CSVUploadDialog/>
-          <Button  type="button" onClick={()=>classesData.refetch()} asChild>
-            <Link href={'/revenue/students/create'}>Create</Link>
-          </Button>
+          <ClassCreationDialog />
         </div>
       </div>
       <div className="rounded-md border">
