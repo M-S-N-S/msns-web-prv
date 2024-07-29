@@ -13,11 +13,11 @@ export async function POST(request: NextRequest) {
     }
 
     const csvContent = await csvFile.text();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+
     const records = parse(csvContent, {
       columns: true,
       skip_empty_lines: true,
-    });
+    }) as string[];
 
     for(const record of records){
         console.log(record)

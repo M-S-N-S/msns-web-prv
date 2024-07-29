@@ -139,20 +139,13 @@ export const StudentTable = () => {
           className="max-w-sm"
         />
         <div className="flex items-center gap-3">
-          
-          <Button variant={'outline'} type="button" onClick={()=>classesData.refetch()}>
+          <Button type="button" asChild>
+            <Link href={'/registration/student/create'}>Add student</Link>
+          </Button>
+          <Button variant={'outline'} type="button" onClick={() => classesData.refetch()}>
             Refresh
           </Button>
-          <Button 
-            variant="destructive" 
-            type="button" 
-            onClick={()=>classesData.refetch()}>
-            Delete
-          </Button>
-          <CSVUploadDialog/>
-          <Button  type="button" onClick={()=>classesData.refetch()} asChild>
-            <Link href={'/registration/student/create'}>Create</Link>
-          </Button>
+          <CSVUploadDialog />
         </div>
       </div>
       <div className="rounded-md border m-2">
@@ -166,9 +159,9 @@ export const StudentTable = () => {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </TableHead>
                   );
                 })}

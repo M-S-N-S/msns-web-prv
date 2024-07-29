@@ -151,7 +151,7 @@ export const EmployeeTable = () => {
           </Button>
           <CSVUploadDialog/>
           <Button  type="button" onClick={()=>classesData.refetch()} asChild>
-            <Link href={'/registration/employee/create'}>Create</Link>
+            <Link href={'/registration/faculty/create'}>Create</Link>
           </Button>
         </div>
       </div>

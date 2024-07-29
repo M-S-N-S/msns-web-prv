@@ -29,12 +29,12 @@ export const ClassRouter = createTRPCRouter({
             classSlug: z.string()
         }))
         .mutation(async ({ ctx, input }) => {
-            try {   
+            try {
 
                 await ctx.db.class.create({
-                    data:{
-                        className:input.className,
-                        classSlug:input.classSlug
+                    data: {
+                        className: input.className,
+                        classSlug: input.classSlug
                     }
                 })
             } catch (error) {
@@ -43,7 +43,31 @@ export const ClassRouter = createTRPCRouter({
                     throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: error.message })
                 }
                 console.error(error)
-                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: "Something went wrong."})
+                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: "Something went wrong." })
+            }
+        }),
+
+    deleteClassesByIds: publicProcedure
+        .input(z.object({
+            classIds: z.string().array(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+            try {
+
+                await ctx.db.class.deleteMany({
+                    where: {
+                        classId: {
+                            in: input.classIds
+                        }
+                    }
+                })
+            } catch (error) {
+                if (error instanceof TRPCClientError) {
+                    console.error(error.message)
+                    throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: error.message })
+                }
+                console.error(error)
+                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: "Something went wrong." })
             }
         })
 })

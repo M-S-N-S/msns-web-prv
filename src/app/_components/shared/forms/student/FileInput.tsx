@@ -76,12 +76,12 @@ export const CSVUploadDialog: React.FC = () => {
       <DialogTrigger asChild>
         <Button>
           <FileType className="mr-2 h-4 w-4" />
-          Upload Students CSV
+          Upload CSV
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Upload Student CSV</DialogTitle>
+          <DialogTitle>Upload CSV</DialogTitle>
           <DialogDescription>
             Upload a CSV file containing student data. The file should be less than 5MB.
           </DialogDescription>
