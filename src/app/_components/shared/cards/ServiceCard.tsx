@@ -1,45 +1,57 @@
-import { DollarSignIcon, LayersIcon, NotebookTabsIcon, Settings2Icon, User2Icon, UserIcon } from "lucide-react";
+import {
+  PersonIcon,
+  BarChartIcon,
+  FileTextIcon,
+  GearIcon,
+} from "@radix-ui/react-icons";
+import { DollarSignIcon, LayersIcon, UsersIcon } from "lucide-react";
 import Link from "next/link";
 
-export const AlumniCards = () => {
+export const ServiceCards = () => {
   const services = [
     {
-      title: "Profile",
-      description: "Generate comprehensive financial reports and analytics.",
-      icon: <User2Icon className="mb-4 h-8 w-8 text-purple-500" />,
-      href: "/faculty/profile",
-    },
-    {
-      title: "Employee Registration",
+      title: "Students",
       description:
         "Easily enroll new students and manage their financial records.",
-      icon: <UserIcon className="mb-4 h-8 w-8 text-green-500" />,
+      icon: <PersonIcon className="mb-4 h-12 w-12 text-green-500" />,
       href: "",
     },
     {
-      title: "Academics",
+      title: "Alumni",
       description:
         "Easily enroll new students and manage their financial records.",
-      icon: <NotebookTabsIcon className="mb-4 h-8 w-8 text-blue-500" />,
-      href: "/admin/academics",
+      icon: <UsersIcon className="mb-4 h-12 w-12 text-blue-500" />,
+      href: "/admin/alumni",
     },
     {
-      title: "Classes",
+      title: "",
       description: "Create and manage new classes or courses for the school.",
-      icon: <LayersIcon className="mb-4 h-8 w-8 text-indigo-500" />,
-      href: "/revenue/classes",
+      icon: <LayersIcon className="mb-4 h-12 w-12 text-indigo-500" />,
+      href: "",
     },
     {
-      title: "Salaries",
+      title: "Fee Collection",
       description: "Streamline tuition and fee collection processes.",
-      icon: <DollarSignIcon className="mb-4 h-8 w-8 text-green-500" />,
-      href: "/faculty/settings",
+      icon: <DollarSignIcon className="mb-4 h-12 w-12 text-green-500" />,
+      href: "",
     },
     {
-      title: "Settings",
+      title: "Financial Reporting",
+      description: "Generate comprehensive financial reports and analytics.",
+      icon: <BarChartIcon className="mb-4 h-12 w-12 text-purple-500" />,
+      href: "",
+    },
+    {
+      title: "Invoice Management",
+      description: "Create, send, and track invoices for various school fees.",
+      icon: <FileTextIcon className="mb-4 h-12 w-12 text-yellow-500" />,
+      href: "",
+    },
+    {
+      title: "Payment Settings",
       description: "Customize payment plans and automate recurring payments.",
-      icon: <Settings2Icon className="mb-4 h-8 w-8 text-red-500" />,
-      href: "/faculty/settings",
+      icon: <GearIcon className="mb-4 h-12 w-12 text-red-500" />,
+      href: "",
     },
   ];
 

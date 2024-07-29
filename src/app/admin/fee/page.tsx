@@ -1,4 +1,4 @@
-import { RevenueCards } from "~/app/_components/revenue/cards/RevenueCard";
+import { RevenueCards } from "~/app/_components/shared/cards/RevenueCard";
 
 export default function FeeManagement (){
     return(

@@ -34,7 +34,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { ClassCreationDialog } from "~/app/_components/revenue/forms/class/ClassCreation";
+import { ClassCreationDialog } from "~/app/_components/shared/forms/class/ClassCreation";
 
 const columns: ColumnDef<ClassProps>[] = [
   {

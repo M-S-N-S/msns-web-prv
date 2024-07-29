@@ -3,10 +3,10 @@ import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "~/comp
 
 export default function AdminProfile() {
     return (
-        <main className="min-h-screen sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3 bg-yellow-100/50">
+        <main className="min-h-screen sm:px-6 sm:py-0 md:gap-8 bg-yellow-100/50">
             <div className="container mx-auto p-4">
             <div className="relative overflow-hidden">
-              <h1 className="text-center text-5xl font-serif font-bold tracking-tight">
+              <h1 className="text-center text-5xl font-serif font-bold tracking-tight p-2">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-yellow-500 hover:from-orange-400 hover:to-green-500 transition-all duration-300">
                   Greetings !
                 </span>
@@ -17,10 +17,9 @@ export default function AdminProfile() {
          <Card
             className="sm:col-span-2" x-chunk="dashboard-05-chunk-0">
             <CardHeader className="pb-3">
-              <CardTitle>Preferences</CardTitle>
-              <CardDescription className="max-w-lg text-balance leading-relaxed">
-                Introducing Our Dynamic Orders Dashboard for Seamless
-                Management and Insightful Analysis.
+              <CardTitle>Profile</CardTitle>
+              <CardDescription className="text-balance leading-relaxed">
+                Modify your Profile credentials.
               </CardDescription>
             </CardHeader>
             <CardFooter>

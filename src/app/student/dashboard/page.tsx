@@ -1,4 +1,4 @@
-import { StudentCards } from "~/app/_components/revenue/cards/StudentCard";
+import { StudentCards } from "~/app/_components/shared/cards/StudentCard";
 
 export default function StudentDashboard (){
     return(

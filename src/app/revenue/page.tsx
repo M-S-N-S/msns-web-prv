@@ -1,4 +1,4 @@
-import { RevenueCards } from "../_components/revenue/cards/RevenueCard";
+import { RevenueCards } from "../_components/shared/cards/RevenueCard";
 
 export default function RevenueLanding() {
   return (

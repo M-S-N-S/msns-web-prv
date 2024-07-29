@@ -1,4 +1,4 @@
-import { StudentCreation } from "~/app/_components/revenue/forms/student/StudentCreation";
+import { StudentCreation } from "~/app/_components/shared/forms/student/StudentCreation";
 
 export default function StudentRegistration(){
 

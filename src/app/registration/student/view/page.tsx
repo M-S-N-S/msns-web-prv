@@ -1,6 +1,6 @@
-import { StudentTable } from "~/app/_components/revenue/tables/StudentTable";
+import { StudentTable } from "~/app/_components/shared/tables/StudentTable";
 
-export default function ClassesPage(){
+export default function StudentsTable(){
 
     return (
         <section className="grid mx-10">

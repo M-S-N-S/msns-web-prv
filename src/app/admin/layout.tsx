@@ -12,7 +12,7 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({ children })
   return (
     <body>
     <Header />
-      <ScrollArea className="rounded-lg bg-emerald-100 shadow-md">
+      <ScrollArea className="rounded-lg shadow-md">
       <HorizontalMenu />
       {children}
     </ScrollArea>

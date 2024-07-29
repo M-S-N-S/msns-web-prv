@@ -1,42 +1,51 @@
 import {
+    PersonIcon,
     BarChartIcon,
+    GearIcon,
   } from "@radix-ui/react-icons";
-  import { BookCheckIcon, CircleFadingPlusIcon, FileStackIcon, FileTextIcon } from "lucide-react";
+  import { NotebookPenIcon, PlusCircleIcon, UsersIcon } from "lucide-react";
   import Link from "next/link";
   
-  export const AcademicCards = () => {
+  export const AdminCards = () => {
     const services = [
       {
-        title: "Attendance Management",
+        title: "Profile",
         description:
-          "Easily enroll new students and manage their financial records.",
-        icon: <BookCheckIcon className="mb-4 h-8 w-8 text-green-500" />,
-        href: "/revenue/students",
+          "View/ modify Profile settings",
+        icon: <PersonIcon className="mb-4 h-12 w-12 text-green-500" />,
+        href: "/admin/profile",
       },
       {
-        title: "Time Table/ Datesheet",
+        title: "Faculty",
         description:
-          "Easily enroll new students and manage their financial records.",
-        icon: <FileStackIcon className="mb-4 h-8 w-8 text-blue-500" />,
-        href: "/revenue/classes",
+          "Manage Faculty preferences",
+        icon: <UsersIcon className="mb-4 h-12 w-12 text-blue-500" />,
+        href: "/admin/alumni",
       },
       {
-        title: "Exams & Results",
+        title: "User Management",
+        description:
+          "Easily enroll new students and manage their financial records.",
+        icon: <PlusCircleIcon className="mb-4 h-12 w-12 text-blue-500" />,
+        href: "/registration/portal",
+      },
+      {
+        title: "Academics",
         description: "Create and manage new classes or courses for the school.",
-        icon: <FileTextIcon className="mb-4 h-8 w-8 text-indigo-500" />,
-        href: "/revenue/classes",
+        icon: <NotebookPenIcon className="mb-4 h-12 w-12 text-indigo-500" />,
+        href: "/admin/academics",
       },
       {
-        title: "Financial Reporting",
+        title: "Revenue & Finance",
         description: "Generate comprehensive financial reports and analytics.",
-        icon: <BarChartIcon className="mb-4 h-8 w-8 text-purple-500" />,
-        href: "",
+        icon: <BarChartIcon className="mb-4 h-12 w-12 text-purple-500" />,
+        href: "/revenue",
       },
       {
-        title: "Events & Activities",
-        description: "Customize payment plans and automate recurring payments.",
-        icon: <CircleFadingPlusIcon className="mb-4 h-8 w-8 text-red-500" />,
-        href: "",
+        title: "Settings",
+        description: "Customize Settings & Preferences",
+        icon: <GearIcon className="mb-4 h-12 w-12 text-red-500" />,
+        href: "/admin/settings",
       },
     ];
   
