@@ -60,9 +60,9 @@ const formSchema = z.object({
   caste: z.optional(z.string()),
   occupation: z
     .string()
-    .min(2, "Occupation must be at least 2 characters")
+    .min( 2, "Occupation must be at least 2 characters")
     .max(100, "Occupation must not exceed 100 characters"),
-  religion: z.string().min(2, "Religion must be at least 2 characters"),
+  religion: z.string().min(1, "Religion must be at least 2 characters"),
   residence: z
     .string()
     .min(5, "Residence must be at least 5 characters")

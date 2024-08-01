@@ -10,6 +10,19 @@ import { z } from "zod";
 
 export const StudentRouter = createTRPCRouter({
 
+    getStudents: publicProcedure
+    .query(async ({ ctx }) => {
+        try {
+            const students = await ctx.db.student.findMany();
+            return students;
+        } catch (error) {
+            console.error(error);
+            throw new TRPCError({
+                code: 'INTERNAL_SERVER_ERROR',
+                message: 'Failed to fetch students'
+            });
+        }
+    }),
     createStudent: publicProcedure
         .input(z.object({
             studentName: z.string(),
@@ -62,6 +75,29 @@ export const StudentRouter = createTRPCRouter({
                     code: 'NOT_FOUND',
                     message: 'Something went wrong'
                 })
+            }
+        }),
+    deleteStudentsByIds: publicProcedure
+        .input(z.object({
+            studentIds: z.string().array(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+            try {
+
+                await ctx.db.student.deleteMany({
+                    where: {
+                        studentId: {
+                            in: input.studentIds
+                        }
+                    }
+                })
+            } catch (error) {
+                if (error instanceof TRPCClientError) {
+                    console.error(error.message)
+                    throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: error.message })
+                }
+                console.error(error)
+                throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: "Something went wrong." })
             }
         })
 })
